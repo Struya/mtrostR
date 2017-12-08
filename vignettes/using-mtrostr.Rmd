@@ -39,7 +39,7 @@ devtools::install_github("Struya/mtrostR")
 Using this package function `make_filename` one can construct the filename string to be used for importing the dataset into R session. The user must only provide a number for a year (i.e. 2013) to be used by the function. Please note that in the package only dataset from 2013 to 2015 are included. 
 
 ```{r}
-# choose a year
+# choose a value for a year
 my_year <- 2013
 
 # construct filename to be used for importing dataset into R
