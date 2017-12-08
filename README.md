@@ -1,4 +1,4 @@
-# mtrostR
+# mtrostR [![Build Status](https://travis-ci.org/Struya/mtrostR.svg?branch=master)](https://travis-ci.org/Struya/mtrostR)
 
 The goal of `mtrostR` is to facilitate analysis of fatalities dataset produced by US National Highway Traffic Safety Administration.
 
