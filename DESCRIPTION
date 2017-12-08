@@ -18,7 +18,7 @@ Remotes: hadley/testthat, jbrian/here
 Imports:
     stringr,
     dplyr,
-    reader,
+    readr,
     here,
     tidyr,
     maps,
