@@ -1,0 +1,99 @@
+---
+title: "Using mtrostR for analysis of fatal injuries suffered in motor vehicle traffic crashes"
+author: "Struya"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using mtrostR for analysis of fatal injuries suffered in motor vehicle traffic crashes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(mtrostR)
+```
+
+Database on fatal injuries suffered in motor vehicle traffic crashes is  produced by [US National Highway Traffic Safety Administration](https://www.nhtsa.gov/). Data is provided on a yearly frequency. 
+Using functions from the `mtrostR` package, one can import data from files disseminated by Administration, summarise it and plot fatal injuries by State on a map.
+
+## Installing `mtrostR`
+
+Package `mtrostR` is only available on GitHub. It can be installed like:
+
+```{r, echo = TRUE, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("Struya/mtrostR")
+```
+
+## Getting started
+
+### Construct filename
+
+Using this package function `make_filename` one can construct the filename string to be used for importing the dataset into R session. The user must only provide a number for a year (i.e. 2013) to be used by the function. Please note that in the package only dataset from 2013 to 2015 are included. 
+
+```{r}
+# choose a year
+my_year <- 2013
+
+# construct filename to be used for importing dataset into R
+my_filename <- make_filename(year = my_year)
+```
+
+### Import dataset
+
+Importing fatalities dataset is simple. Using `fars_read` with filename string one can import a dataset for a chosen year.
+
+```{r}
+# import datast into R using filename string
+my_df <- fars_read(my_filename)
+
+my_df
+```
+
+There is also a function `fars_read_years` that imports datasets for all years at once but returns only two columns, month and year. The user only has to provide a vector of years. 
+
+```{r}
+# vector of years 
+my_years <- 2013:2015
+
+# import all datasets into R. 
+my_list <- fars_read_years(my_years)
+
+my_list
+```
+
+## Summarizing datasets
+
+Using `fars_read_years` to import only columns months and years might be useful, however there is a function that calls it only to import datasets in order to summarise it by year and month. It is named `fars_summarise_years`.
+
+```{r}
+# vector of years
+my_years <- 2013:2015
+
+# count number of fatalities by month and year
+count_by_year_and_month_df <- fars_summarize_years(my_years)
+count_by_year_and_month_df
+```
+
+## Figures
+
+Plotting fatalities on a map is a nice way of getting a feel for spatial distribution of fatalities accross United States. By providing the State ID number and a year, the function `fars_map_state` will plot spatial distribution on a map of chosen State. 
+
+```{r, fig.show= 'hold'}
+# choice of State
+my_state_id <- 1
+my_year <- 2015
+
+my_state_id_to_compare <- 10 
+
+# plot spatial distribution for a year
+fars_map_state(my_state_id, my_year)
+fars_map_state(my_state_id_to_compare, my_year)
+```
