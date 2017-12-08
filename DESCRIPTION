@@ -14,3 +14,12 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Remotes: hadley/testthat, jbrian/here
+Imports:
+    stringr,
+    dplyr,
+    reader,
+    here,
+    tidyr,
+    map,
+    graphics
