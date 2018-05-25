@@ -2,6 +2,8 @@
 
 The goal of `mtrostR` is to facilitate analysis of fatalities dataset produced by US National Highway Traffic Safety Administration.
 
+The other goal is to serve for testing.
+
 ## Example
 
 This is a basic example which shows you how to construct a filename string and import a dataset into R session:
